@@ -7,6 +7,9 @@
 body {
     padding-top: 54px;
 }
+.container .row {
+    min-height: 760px;
+}
 
 @media (min-width: 992px) {
     body {
