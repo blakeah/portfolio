@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.003.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+
+</head>
+
+<body>
+    <style>
+
+    </style>
+
+    <!-- Page Content -->
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" th:fragment="copy">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#tenure-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" th:href="@{/}">
+                        <img class="img-responsive" th:src="@{/images/seal.jpg}" src="images/seal.jpg" alt=""></img>
+                    </a>
+
+                    <a class="navbar-brand uh-nav-app-name" th:href="@{/}" sec:authorize="isAnonymous()">
+                        University of Hawai&#39;i
+                    </a>
+                    <a class="navbar-brand uh-nav-app-name" th:href="@{/}" sec:authorize="isAuthenticated()">
+                        Tenure <span class="amp">&amp;</span> Promotion
+                    </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="tenure-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a th:href="@{/}">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Help <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a th:href="@{/help/contact}">Contact</a></li>
+                                <li><a th:href="@{/help/faq}">FAQ</a></li>
+                                <li><a th:href="@{/help/classifications}">Classifications</a></li>
+                                <li><a th:href="@{/help/guidelines}">Guidelines</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" sec:authorize="hasAnyRole('ADMINISTRATOR', 'COORDINATOR', 'SUPERUSER')">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a th:href="@{/admin}" sec:authorize="hasRole('SUPERUSER')">Administration</a></li>
+                                <li class="divider" sec:authorize="hasRole('SUPERUSER')"></li>
+                                <li><a th:href="@{/admin/office/coordinator}" sec:authorize="hasAnyRole('ADMINISTRATOR', 'SUPERUSER')">Coordinators</a></li>
+                                <li class="divider" sec:authorize="hasAnyRole('ADMINISTRATOR', 'SUPERUSER')"></li>
+                                <li><a th:href="@{/admin/application}" sec:authorize="hasRole('SUPERUSER')">Applications</a></li>
+                                <li><a th:href="@{/admin/application/reviewer}" sec:authorize="hasRole('SUPERUSER')">Committees</a></li>
+                                <li><a th:href="@{/admin/application/role}">Application Roles</a></li>
+                                <li><a th:href="@{/admin/application/state}">Application States</a></li>
+                                <li><a th:href="@{/admin/application/type}">Application Types</a></li>
+                                <li><a th:href="@{/admin/appointment/rank}">Appointment Ranks</a></li>
+                                <li><a th:href="@{/admin/appointment/type}">Appointment Types</a></li>
+                                <li><a th:href="@{/admin/campus}">Campuses</a></li>
+                                <li><a th:href="@{/holiday}">Holidays</a></li>
+                                <li><a th:href="@{/admin/office}">Offices</a></li>
+                                <li class="divider" sec:authorize="hasRole('SUPERUSER')"></li>
+                                <li><a th:href="@{/admin/eligibility/eligibilities}" sec:authorize="hasRole('SUPERUSER')">Eligibilities</a></li>
+                                <li class="divider" sec:authorize="hasRole('SUPERUSER')"></li>
+                                <li><a th:href="@{/admin/user}" sec:authorize="hasRole('SUPERUSER')">Current User</a></li>
+                                <li><a th:href="@{/admin/lookup}" sec:authorize="hasRole('SUPERUSER')">Employee Lookup</a></li>
+                            </ul>
+                        </li>
+                        <li sec:authorize="isAuthenticated()">
+                            <a th:href="@{/logout}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+        <div id="sidebar">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Applicant Info</div>
+                    <div class="panel-body">
+                        <input type="hidden" id="applicationId" name="applicationId" th:value="${applicationId}" />
+                        <span id="appName" th:text="${appName}"></span><br /><br />
+                        <span id="appType" th:text="${appType}"></span>
+                        <span id="appRank" th:text="${appRank}"></span> <br /><br />
+                        <span id="appState" th:text="${appState}"></span>
+                    </div>
+                </div>
+
+                <div th:if="${#authorization.expression('hasRole(''COORDINATOR'')')}  and ${#authorization.expression(isSubmittedState != null ? isSubmittedState : false)}">
+                    <form class="form-inline">
+                        <button type="button" class="btn btn-primary">Start Review</button> &nbsp;
+                    </form>
+                </div>
+
+                <div class="alert alert-success" id="alert-saved" role="alert" style="display: none;" sec:authorize="hasRole('COORDINATOR')">Inputs have been saved!</div>
+                <div class="alert alert-warning" id="alert-saving" role="alert" style="display: none;" sec:authorize="hasRole('COORDINATOR')">Currently Saving Inputs.</div>
+            </div>
+        </div>
+        <div id="main">
+            <div>
+                <ul class="nav nav-tabs nav-justified text-left">
+                    <li><a data-toggle="pill" href="#application-form" id="application-form-tab">Eligibility</a></li>
+                    <li><a data-toggle="pill" href="#dossier-attachments" id="dossier-attachments-tab">Dossier</a></li>
+                    <li sec:authorize="hasRole('COORDINATOR')"><a data-toggle="pill" href="#reviewers" id="reviewers-tab">Committees</a></li>
+                    <li class="active"><a data-toggle="pill" href="#recommendation" id="recommendation-tab">Recommendations</a></li>
+                </ul>
+            </div>
+
+            <div class="tab-content">
+                <!-- Bootstrap tab-panel fade Eligibility -->
+                <div id="maintab" class="panel maintab-subpanel">
+                    <div class="panel-heading">
+                        <span class="panel-title">&nbsp;</span>
+                        <h4 class="panel-title pull-right">
+                            <a data-toggle="collapse" href="#collapseE" style="color: white;">&nbsp;
+                                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                            </a>
+                        </h4>
+                    </div>
+
+                    <div class="panel-group">
+                        <div class="panel">
+                            <div id="collapseE" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn active"><input type="radio" name='select' checked>
+                                    <i class="fa fa-circle-o fa-2x"></i>
+                                    <i class="fa fa-dot-circle-o fa-2x"></i>
+                                    <span>Recommend</span>
+                                </label>
+                                    <label class="btn"><input type="radio" name='select'>
+                                    <i class="fa fa-circle-o fa-2x"></i>
+                                    <i class="fa fa-dot-circle-o fa-2x"></i>
+                                    <span>Not Recommend</span>
+                                </label>
+                                </div>
+                                <table class="table table-hover table-condensed">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <input class="form-control-file" id="uploadRecommendation" type="file" />
+                                            </td>
+                                            <td class="text-right">
+                                                <button class="btn btn-default" type="submit" value="UploadRecommendation">
+                                                        Upload Recommendation <i class="glyphicon glyphicon-upload"></i>
+                                                    </button>
+                                            </td>
+                                            <td class="text-right">
+                                                <button class="btn btn-default" type="submit" value="push">
+                                                        Submit <i class="glyphicon glyphicon-forward"></i>
+                                                    </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table table-hover table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Committee</th>
+                                            <th>Recommendation</th>
+                                            <th class="text-right"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>DPC</td>
+                                            <td>Recommended</td>
+                                            <td class="text-right">
+                                                <button class="btn btn-default" type="submit" value="UploadRecommendation">
+                                                    View File <i class="glyphicon glyphicon-open"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Department Chair</td>
+                                            <td>Not Recommended</td>
+                                            <td class="text-right">
+                                                <button class="btn btn-default" type="submit" value="UploadRecommendation">
+                                                    View File <i class="glyphicon glyphicon-open"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dean/Director</td>
+                                            <td>Recommended</td>
+                                            <td class="text-right">
+                                                <button class="btn btn-default" type="submit" value="UploadRecommendation">
+                                                    View File <i class="glyphicon glyphicon-open"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3"></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Bootstrap tab-panel fade Exclusion form. -->
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
