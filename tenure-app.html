@@ -107,12 +107,12 @@
 
                 <div th:if="${#authorization.expression('hasRole(''COORDINATOR'')')}  and ${#authorization.expression(isSubmittedState != null ? isSubmittedState : false)}">
                     <form class="form-inline">
-                        <button type="button" class="btn btn-primary">Start Review</button> &nbsp;
+                        <button type="button" class="btn btn-disabled">Start Review</button> &nbsp;
                     </form>
                 </div>
 
-                <div class="alert alert-success" id="alert-saved" role="alert" style="display: none;" sec:authorize="hasRole('COORDINATOR')">Inputs have been saved!</div>
-                <div class="alert alert-warning" id="alert-saving" role="alert" style="display: none;" sec:authorize="hasRole('COORDINATOR')">Currently Saving Inputs.</div>
+                <div class="alert alert-success" id="alert-saved" role="alert" style="display: none;" >Inputs have been saved!</div>
+                <div class="alert alert-warning" id="alert-saving" role="alert" style="display: none;">Currently Saving Inputs.</div>
             </div>
         </div>
         <div id="main">
@@ -153,7 +153,7 @@
                                    <div class="form-group">
                                        <label for="campus" class="col-sm-2 control-label">Campus</label>
                                        <div class="col-sm-10">
-                                           <select id="campusId" name="campusId" class="form-control" onchange="enableSaveCheck();" th:disabled="${!user.hasRole('COORDINATOR')}" >
+                                           <select id="campusId" name="campusId" class="form-control">
                                                <option value="">Select Campus</option>
                                                <option value="2">Hilo</option>
                                                <option value="7">Manoa</option>
@@ -171,13 +171,13 @@
                                    <div class="form-group">
                                        <label for="subject" class="col-sm-2 control-label">Subject Area</label>
                                        <div class="col-sm-10">
-                                           <input type="text" class="form-control" name="subject" id="subject" onblur="enableSaveCheck();" placeholder="Subject Area" th:disabled="${!user.hasRole('COORDINATOR')}"/>
+                                           <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject Area"/>
                                        </div>
                                    </div>
                                    <div class="form-group">
                                        <label for="initial-rank" class="col-sm-2 control-label">Initial Appt Rank</label>
                                        <div class="col-sm-10">
-                                           <select name="initialRankId" id="initialRankId" class="form-control" onchange="enableSaveCheck();" th:disabled="${!user.hasRole('COORDINATOR')}">
+                                           <select name="initialRankId" id="initialRankId" class="form-control">
                                                <option value="">Select Initial Appointment Rank</option>
                                                <option value="C2">C2</option>
                                                <option value="C3">C3</option>
@@ -224,7 +224,7 @@
                                    </div>
                                    <div class="form-group">
                                        <label for="current-appt-date" class="col-sm-2 control-label">Current Appt Date</label>
-                                       <div class="col-sm-10" sec:authorize="hasRole('ROLE_COORDINATOR')">
+                                       <div class="col-sm-10">
                                            <div class="input-group date" data-provide="datepicker">
                                                <input type="text" class="form-control" id="currentApptDate" name="currentApptDate" placeholder="mm/dd/yyyy" />
                                                <div class="input-group-addon">
@@ -232,7 +232,7 @@
                                                </div>
                                            </div>
                                        </div>
-                                       <div class="col-sm-10" sec:authorize="!hasRole('ROLE_COORDINATOR')">
+                                       <div class="col-sm-10">
                                                <input type="text" class="form-control" id="current-appt-date" name="current-appt-date" placeholder="mm/dd/yyyy" disabled="disabled"/>
                                        </div>
                                    </div>
@@ -249,7 +249,7 @@
                                    <div class="form-group">
                                        <label for="tenure-consideration" class="col-sm-2 control-label text-left">Tenure Consideration</label>
                                        <div class="col-sm-10">
-                                           <select name="considerationCode" id="considerationCode" class="form-control" onchange="approvalCheck(this)" th:disabled="${!user.hasRole('COORDINATOR')}">
+                                           <select name="considerationCode" id="considerationCode" class="form-control">
                                                <option value="appropriate">Appropriate</option>
                                                <option value="before">Before Designated Year</option>
                                                <option value="after">After Designated Year</option>
@@ -258,14 +258,14 @@
                                    </div>
                                    <div class="form-group">
                                        <form class="form-inline">
-                                           <div class="col-xs-6 col-md-offset-2 col-md-6 text-left" sec:authorize="hasRole('ROLE_COORDINATOR')">
-                                               <button type="submit" onclick="addEligibility();" id="save-button" class="btn btn-default pull-left" th:disabled="true">Save</button>
+                                           <div class="col-xs-6 col-md-offset-2 col-md-6 text-left">
+                                               <button type="submit" id="save-button" class="btn btn-default pull-left" th:disabled="true">Save</button>
                                            </div>
                                        </form>
                                    </div>
                                </form>
                                <div class="form-group" id="approval-after-upload" style="display: none;">
-                                   <form class="well form-horizontal" enctype="multipart/form-data" action="#" th:action="@{/admin/file}" method="post" id="uploadform">
+                                   <form class="well form-horizontal" action="#" method="post" id="uploadform">
                                        <table class="table">
                                            <tr>
                                                <td>
@@ -301,91 +301,6 @@
                            </div>
                        </div>
                     </div>
-
-                    <div class="panel-group tab-content tab-pane fade in" id="recommendation">
-                        <div class="panel">
-                            <div id="collapseE" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn active"><input type="radio" name='select' checked>
-                                    <i class="fa fa-circle-o fa-2x"></i>
-                                    <i class="fa fa-dot-circle-o fa-2x"></i>
-                                    <span>Recommend</span>
-                                </label>
-                                    <label class="btn"><input type="radio" name='select'>
-                                    <i class="fa fa-circle-o fa-2x"></i>
-                                    <i class="fa fa-dot-circle-o fa-2x"></i>
-                                    <span>Not Recommend</span>
-                                </label>
-                                </div>
-                                <table class="table table-hover table-condensed">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <input class="form-control-file" id="uploadRecommendation" type="file" />
-                                            </td>
-                                            <td class="text-right">
-                                                <button class="btn btn-default" type="submit" value="UploadRecommendation">
-                                                        Upload Recommendation <i class="glyphicon glyphicon-upload"></i>
-                                                    </button>
-                                            </td>
-                                            <td class="text-right">
-                                                <button class="btn btn-default" type="submit" value="push">
-                                                        Submit <i class="glyphicon glyphicon-forward"></i>
-                                                    </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <table class="table table-hover table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th>Committee</th>
-                                            <th>Recommendation</th>
-                                            <th class="text-right"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>DPC</td>
-                                            <td>Recommended</td>
-                                            <td class="text-right">
-                                                <button class="btn btn-default" type="submit" value="UploadRecommendation">
-                                                    View File <i class="glyphicon glyphicon-open"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Department Chair</td>
-                                            <td>Not Recommended</td>
-                                            <td class="text-right">
-                                                <button class="btn btn-default" type="submit" value="UploadRecommendation">
-                                                    View File <i class="glyphicon glyphicon-open"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dean/Director</td>
-                                            <td>Recommended</td>
-                                            <td class="text-right">
-                                                <button class="btn btn-default" type="submit" value="UploadRecommendation">
-                                                    View File <i class="glyphicon glyphicon-open"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <thead>
-                                        <tr>
-                                            <th colspan="3"></th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- End Bootstrap tab-panel fade Exclusion form. -->
             </div>
@@ -398,6 +313,18 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+    /*disable non active tabs*/
+    $('.nav li').not('.active').addClass('disabled');
+    $('.nav li').not('.active').find('a').removeAttr("data-toggle");
+
+    $('button').click(function(){
+        /*enable next tab*/
+        $('.nav li.active').next('li').removeClass('disabled');
+        $('.nav li.active').next('li').find('a').attr("data-toggle","tab")
+    });
+});</script>
 
 </body>
 
