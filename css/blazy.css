@@ -1,0 +1,103 @@
+/* .container {
+		  background-color: #1E1E1E;
+		  height:0;
+		  padding-bottom:66%;
+	  }
+	  .horizontal.container{
+	  	  overflow-x: scroll;
+		  overflow-y: hidden;
+	  }
+	  .horizontal .list{
+		  font-size:0;
+		  width:300%;
+	  }
+	  .horizontal .list .wrapper {
+		  display: inline-block;
+		  width:33.3%;
+	  }
+	  .vertical.container{
+	  	  overflow-x: hidden;
+		  overflow-y: scroll;
+	  }
+	  .vertical .list{
+	  	  width: 100%;
+	  }
+	  .vertical .list .wrapper{
+	  	  width: 100%;
+	  } */
+      .ratio{
+		  padding-bottom:66.64%;
+		  background-color: #1E1E1E;
+		  height: 0;
+		  width: 100%;
+		  overflow: hidden;
+		  position: relative;
+	  }
+      .example {
+         overflow:hidden;
+         position:relative;
+     }
+     .branding{
+	      max-width: 900px;
+	      margin: 0 auto;
+	  }
+	  .branding pre{
+		  background: #f7f7f7;
+		  color: black;
+		  border-radius: 0;
+	  }
+      .section {
+		  margin: 0 auto;
+		  max-width:900px;
+	  }
+	  img {
+		  max-width: 100%;
+	  }
+	  pre {
+		  background: #212121;
+		  color: white;
+		  padding: 15px 10px 5px;
+		  margin: 0 0 20px;
+		  font-family:Menlo,monospace;
+		  font-size: 14px;
+		  overflow-x: auto;
+	  }
+	  .b-lazy, video{
+		  display:inline-block;
+		  position:absolute;
+		  left:0;
+		  top:0;
+		  height:100%;
+		  width:100%;
+	  }
+	  .list .b-lazy{
+		  max-height:100%;
+		  height:auto;
+	  }
+	  .b-lazy.animate{
+		  opacity:0;
+		  -ms-transform: scale(3);
+		  -moz-transform: scale(3);
+		  -webkit-transform: scale(3);
+		  transform: scale(3);
+		  -ms-transition: all 500ms;
+		  -moz-transition: all 500ms;
+		  -webkit-transition: all 500ms;
+		  transition: all 500ms;
+	  }
+	  .b-loaded.animate {
+		  opacity:1;
+		  -ms-transform: scale(1);
+		  -moz-transform: scale(1);
+		  -webkit-transform: scale(1);
+		  transform: scale(1);
+	  }
+
+	  @media (max-width: 600px) {
+	    h1 {
+	    	font-size: 40px;
+	    }
+		h2 {
+			font-size: 25px;
+		}
+	  }
