@@ -1,73 +1,16 @@
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
+
 <link href="css/style.css" type="text/css" rel="stylesheet">
+
 <head>
-<script src="js/jquery-1.11.3.js"></script>
+
+
 <link href='http://fonts.googleapis.com/css?family=Days+One' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Sarala:400,700' rel='stylesheet' type='text/css'>
-<script> 
-$(document).ready(function(){    
-   $("link1").delay(800).animate ({top: '200px', left: '200px', opacity: '1', height: '30px', width: 'auto',});
-   $("link2").delay(900).animate ({top: '200px', left: '330px', opacity: '1', height: '30px', width: 'auto',});
-   $("link3").delay(1000).animate ({top: '200px', left: '470px', opacity: '1', height: '30px', width: 'auto',});
-   $("link4").delay(1100).animate ({top: '200px', left: '590px', opacity: '1', height: '30px', width: 'auto',});
-   $("link5").delay(1200).animate ({top: '200px', left: '710px', opacity: '1', height: '30px', width: 'auto',});   
-});
-</script> 
-<script> 
-$(document).ready(function(){
-    $("link2").hover(function(){
-		var div = $("linkfade");
-        div.animate({height: '35px', opacity: '0.1'}, "fast");		     			
-    });
-	$("div").hover(function(){
-        var div = $("linkfade");
-		div.animate({opacity: '0.0'}, "fast");
-		$("linkfade").stop();
-    
-    });
-});
 
-$(document).ready(function(){
-    $("link3").hover(function(){
-		var div = $("linkfade2");
-        div.animate({height: '35px', opacity: '0.1'}, "fast");		     			
-    });
-	$("div").hover(function(){
-        var div = $("linkfade2");
-		div.animate({opacity: '0.0'}, "fast");
-		$("linkfade2").stop();
-    
-    });
-});
 
-$(document).ready(function(){
-    $("link4").hover(function(){ 
-		var div = $("linkfade3");
-        div.animate({height: '35px', opacity: '0.1'}, "fast");		     			
-    });
-	$("div").hover(function(){
-        var div = $("linkfade3");
-		div.animate({opacity: '0.0'}, "fast");
-		$("linkfade3").stop();
-    
-    });
-});
-$(document).ready(function(){
-    $("link5").hover(function(){
-		var div = $("linkfade4");
-        div.animate({height: '35px', opacity: '0.1'}, "fast");		     			
-    });
-	$("div").hover(function(){
-        var div = $("linkfade4");
-		div.animate({opacity: '0.0'}, "fast");
-		$("linkfade4").stop();
-    
-    });
-});
-</script> 
 
-   
 
 
 </head>
@@ -82,21 +25,37 @@ $(document).ready(function(){
 
 <div id="bevel">
 <div class="outline-bevel">USER DATA</div>
-<div class="header2" id="header2-active">Section 1</div>
-<a href="#"><div class="header2">Section 2</div></a>
+<nav>
+<a data-toggle="tab" href="#tab1" role="tab" class="header2">Section 1</a>
+<a data-toggle="tab" href="#tab2" role="tab" class="header2">Section 2</a>
+<a data-toggle="tab" href="#" role="tab" class="header2">Section 3</a>
+</nav>
 </div>
+<div class="tab-content" id="nav-tabContent">
 <div id="bevel-border"></div>
 <div id="scroll-gradient"></div>
+<div class="tab-content" id="nav-tabContent">
+<div class="tab-pane fade show active" id="tab1">
 <div id="bevel2">
 <div class="outline-bevel2">Section 1</div>
-    <div id="scroll">    
+    <div id="scroll">
       Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-    </div>      
+    </div>
+</div>
+</div>
+<div class="tab-pane fade" id="tab2">
+<div id="bevel2">
+<div class="outline-bevel2">Section 2</div>
+    <div id="scroll">
+      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+    </div>
+</div>
+</div>
 </div>
 <div id="bevel-border2"></div>
 <div id="edge"></div>
 <div id="edge2"></div>
-
+</div>
 <linkfade style="opacity:0;top:195px;left:320px;height:35px;width:100px;position:absolute;" id="fade"></linkfade>
 <linkfade2 style="opacity:0;top:195px;left:460px;height:35px;width:80px;position:absolute;" id="fade"></linkfade2>
 <linkfade3 style="opacity:0;top:195px;left:580px;height:35px;width:90px;position:absolute;" id="fade"></linkfade3>
@@ -111,7 +70,69 @@ $(document).ready(function(){
 <link5 style="opacity:0;height:30px;width:auto;position:absolute;top:180px;left:710px;" id="link1"><font color="#fff"><a href="#">E-mail</a></font></link5>
 
 
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+$(document).ready(function(){
+   $("link1").delay(800).animate ({top: '200px', left: '200px', opacity: '1', height: '30px', width: 'auto',});
+   $("link2").delay(900).animate ({top: '200px', left: '330px', opacity: '1', height: '30px', width: 'auto',});
+   $("link3").delay(1000).animate ({top: '200px', left: '470px', opacity: '1', height: '30px', width: 'auto',});
+   $("link4").delay(1100).animate ({top: '200px', left: '590px', opacity: '1', height: '30px', width: 'auto',});
+   $("link5").delay(1200).animate ({top: '200px', left: '710px', opacity: '1', height: '30px', width: 'auto',});
+});
+</script>
+<script>
+$(document).ready(function(){
+    $("link2").hover(function(){
+		var div = $("linkfade");
+        div.animate({height: '35px', opacity: '0.1'}, "fast");
+    });
+	$("div").hover(function(){
+        var div = $("linkfade");
+		div.animate({opacity: '0.0'}, "fast");
+		$("linkfade").stop();
 
+    });
+});
+
+$(document).ready(function(){
+    $("link3").hover(function(){
+		var div = $("linkfade2");
+        div.animate({height: '35px', opacity: '0.1'}, "fast");
+    });
+	$("div").hover(function(){
+        var div = $("linkfade2");
+		div.animate({opacity: '0.0'}, "fast");
+		$("linkfade2").stop();
+
+    });
+});
+
+$(document).ready(function(){
+    $("link4").hover(function(){
+		var div = $("linkfade3");
+        div.animate({height: '35px', opacity: '0.1'}, "fast");
+    });
+	$("div").hover(function(){
+        var div = $("linkfade3");
+		div.animate({opacity: '0.0'}, "fast");
+		$("linkfade3").stop();
+
+    });
+});
+$(document).ready(function(){
+    $("link5").hover(function(){
+		var div = $("linkfade4");
+        div.animate({height: '35px', opacity: '0.1'}, "fast");
+    });
+	$("div").hover(function(){
+        var div = $("linkfade4");
+		div.animate({opacity: '0.0'}, "fast");
+		$("linkfade4").stop();
+
+    });
+});
+</script>
 </body>
-</html>
 
+</html>

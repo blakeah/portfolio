@@ -95,7 +95,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99000000', e
 	  display:inherit;
 	position: absolute;
     right: -500px;
-    width: auto;; 
+    width: auto;;
 	top: 150px;
   }
 
@@ -137,9 +137,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99000000', e
    -moz-box-shadow: 0 25px 50px -25px rgba(0, 0, 0, .5) inset;
      -o-box-shadow: 0 25px 50px -25px rgba(0, 0, 0, .5) inset;
 }
-#text2{	
+#text2{
 	font-size:1.2em;
-	font-family: 'Days One', sans-serif;	
+	font-family: 'Days One', sans-serif;
 	font-weight:100;
 	display:inherit;
 	position: absolute;
@@ -156,7 +156,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99000000', e
 	  display:inherit;
 	position: absolute;
     right: -500px;
-    width: auto;; 
+    width: auto;;
 	top: 180px;
   }
 
@@ -169,10 +169,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99000000', e
 	top: 180px;
   }
 }
-#link1{	
+#link1{
 	z-index: 3;
 	font-size:1.2em;
-	font-family: 'Days One', sans-serif;	
+	font-family: 'Days One', sans-serif;
 }
 #sealbg{
 	position: absolute;
@@ -211,16 +211,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99000000', e
 }
 
 #bevel  {
-font-family: 'Sarala', sans-serif;	
+font-family: 'Sarala', sans-serif;
 color : #fff;
-margin: 1px; 
+margin: 1px;
 z-index: 10;
 padding: 10px;
 position: absolute;
 left: 200px;
 top: 300px;
 width: 300px;
-height: 400px; 
+height: 400px;
 	background: #171f22; /* fallback */
 	background:
 		linear-gradient(135deg, transparent 10px, #171f22 0) top left,
@@ -228,17 +228,17 @@ height: 400px;
 		linear-gradient(315deg, transparent 10px, #171f22 0) bottom right,
 		linear-gradient(45deg,  transparent 10px, #171f22 0) bottom left;
 	background-size: 50% 50%;
-	background-repeat: no-repeat;	
+	background-repeat: no-repeat;
 }
 
-#bevel-border  {   
+#bevel-border  {
 z-index: 9;
 padding: 10px;
 position: absolute;
 left: 199px;
 top: 299px;
 width: 304px;
-height: 404px; 
+height: 404px;
 	background: #96c0bf; /* fallback */
 	background:
 		linear-gradient(135deg, transparent 10px, #96c0bf 0) top left,
@@ -246,20 +246,20 @@ height: 404px;
 		linear-gradient(315deg, transparent 10px, #96c0bf 0) bottom right,
 		linear-gradient(45deg,  transparent 10px, #96c0bf 0) bottom left;
 	background-size: 50% 50%;
-	background-repeat: no-repeat;	
+	background-repeat: no-repeat;
 }
 
 #bevel2  {
-font-family: 'Sarala', sans-serif;	
+font-family: 'Sarala', sans-serif;
 color : #fff;
-margin: 1px; 
+margin: 1px;
 z-index: 10;
 padding: 10px;
 position: absolute;
 left: 550px;
 top: 300px;
 width: 300px;
-height: 400px; 
+height: 400px;
 	background: #171f22; /* fallback */
 	background:
 		linear-gradient(135deg, transparent 10px, #171f22 0) top left,
@@ -267,17 +267,17 @@ height: 400px;
 		linear-gradient(315deg, transparent 10px, #171f22 0) bottom right,
 		linear-gradient(45deg,  transparent 10px, #171f22 0) bottom left;
 	background-size: 50% 50%;
-	background-repeat: no-repeat;	
+	background-repeat: no-repeat;
 }
 
-#bevel-border2  {   
+#bevel-border2  {
 z-index: 9;
 padding: 10px;
 position: absolute;
 left: 549px;
 top: 299px;
 width: 304px;
-height: 404px; 
+height: 404px;
 	background: #96c0bf; /* fallback */
 	background:
 		linear-gradient(135deg, transparent 10px, #96c0bf 0) top left,
@@ -285,7 +285,7 @@ height: 404px;
 		linear-gradient(315deg, transparent 10px, #96c0bf 0) bottom right,
 		linear-gradient(45deg,  transparent 10px, #96c0bf 0) bottom left;
 	background-size: 50% 50%;
-	background-repeat: no-repeat;	
+	background-repeat: no-repeat;
 }
 
 #panel1-header {
@@ -363,6 +363,7 @@ z-index: 11;
 	position:relative;
 	float: left;
 	margin-top: 5px;
+    text-decoration: none;
 	background-color: #171f22;
 	border-bottom: solid thin #666;
 	width: 98%;
@@ -388,8 +389,9 @@ z-index: 11;
 	border-bottom: solid thin #666;
 }
 
-.header2 hover {
+.header2:hover{
 	z-index: 10;
+    text-decoration: none;
 	position:relative;
 	float: left;
 	margin-top: 5px;
@@ -453,13 +455,13 @@ animation: AnimationName 0s ease infinite;
 ::-webkit-scrollbar, -moz-scrollbar {
     width: 10px;
 }
- 
+
 ::-webkit-scrollbar-track, -moz-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     border-radius: 0px;
 }
- 
+
 ::-webkit-scrollbar-thumb, -moz-scrollbar-thumb {
     border-radius: 5px;
-    -webkit-box-shadow: inset 0 0 6px rgba(255,255,255,255.5); 
+    -webkit-box-shadow: inset 0 0 6px rgba(255,255,255,255.5);
 }
