@@ -7,7 +7,7 @@ html {
     overflow-y:scroll;
 }
 body {
-    padding-top: 100px;
+    padding-top: 110px;
     background-color: white;
 }
 .container {
@@ -26,7 +26,9 @@ a:hover {
     color: #0275d8;
     text-decoration: underline;
 }
-
+.datepicker {
+z-index:50;
+}
 td.uh-pre {
     white-space: pre;           /* CSS 2.0 */
     white-space: pre-wrap;      /* CSS 2.1 */
@@ -54,6 +56,9 @@ td.uh-pre {
 }
 .navbar {
     background-color: white;
+    /* -webkit-box-shadow: 0px 4px 10px -1px rgba(0,0,0,0.30);
+    -moz-box-shadow: 0px 4px 10px -1px rgba(0,0,0,0.30);
+    box-shadow: 0px 4px 10px -1px rgba(0,0,0,0.30); */
 }
 .navbar-fixed-top .nav {
     padding-top: 40px;
@@ -135,75 +140,10 @@ td.uh-pre {
 }
 
 #maintab.panel {
-    border-color:  #185182;;
+    border-color:  #185182;
 
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-}
-label.btn span {
-    font-size: 1.3em;
-}
-
-label input[type="radio"]~i.fa.fa-circle-o {
-    color: #c8c8c8;
-    display: inline;
-}
-
-label input[type="radio"]~i.fa.fa-dot-circle-o {
-    display: none;
-}
-
-label input[type="radio"]:checked~i.fa.fa-circle-o {
-    display: none;
-}
-
-label input[type="radio"]:checked~i.fa.fa-dot-circle-o {
-    color: #7AA3CC;
-    display: inline;
-}
-
-label:hover input[type="radio"]~i.fa {
-    color: #7AA3CC;
-}
-
-div[data-toggle="buttons"] label.active {
-    color: #7AA3CC;
-    outline: none;
-    border: none;
-}
-
-div[data-toggle="buttons"] label {
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 12px;
-    font-weight: normal;
-    line-height: 2em;
-    text-align: left;
-    white-space: nowrap;
-    vertical-align: top;
-    cursor: pointer;
-    background-color: none;
-    border: 0px solid #c8c8c8;
-    border-radius: 3px;
-    color: #c8c8c8;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
-
-div[data-toggle="buttons"] label:hover {
-    color: #7AA3CC;
-}
-
-div[data-toggle="buttons"] label:active,
-div[data-toggle="buttons"] label.active {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    outline: none;
-    border: none;
 }
 
 #maintab.panel.maintab-subpanel > .panel-heading {
@@ -264,6 +204,9 @@ input.form-control.full-width {
 button.redify-link {
     color: red
 }
+.glyphicon.app-color {
+    color: #337ab7;
+}
 .pinkify {
     background-color: pink;
 }
@@ -275,6 +218,10 @@ button.redify-link {
 }
 .yellowify {
     background-color: #ffff66;
+}
+
+.background-transparent {
+    background-color: transparent !important;
 }
 
 .panel-heading a:after {
@@ -307,23 +254,23 @@ button.redify-link {
     margin-top: 0px;
     padding-bottom: 10px;
 }
-#sidebar {
+/* #sidebar {
   width: inherit;
   min-width: 220px;
   max-width: 220px;
-  padding-top: 0px;
+  padding-top: 43px;
   float: left;
   height:auto;
   position:relative;
   overflow-y:auto;
   overflow-x:hidden;
-}
+} */
 #main {
   float: left;
   /* margin-top: 20px;*/
-  margin-top: 0px;
+  /* margin-top: 0px; */
   padding-top: 0px;
-  width: 700px;
+  width: 100%;
 }
 #shadow {
     margin-top: -10px;
@@ -331,15 +278,19 @@ button.redify-link {
     padding-bottom: 5px;
     background-color: #185182;
 }
-#space {
-    /* margin-left: 24%; */
-}
 
 #append {
     width: 80%;
     padding: 2px;
     margin: .5em;
 }
+
+.dossier-empty {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .nav-pills > .active > a,
 .nav-pills > .active > a:hover,.nav-pills > li > a:hover {
     text-decoration: none;
@@ -369,12 +320,8 @@ button.redify-link {
     position: absolute;
     bottom: 100px;
 }
-#success_message {
-    display: none;
-}
 .background-color {
     background-color: #f2f2f2;
-    /* background-color: #e6f2ff; */
 }
 .table>thead>tr>th {
     border-bottom: none;
@@ -441,7 +388,13 @@ td.break-all-wrapping {
     overflow-wrap: break-all;
 }
 
-
+.ellipsis {
+    width: 151px;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 
 /* -------------------------------------------------------- */
 /* -------------------------------------------------------- */
@@ -463,8 +416,11 @@ td.break-all-wrapping {
     .container {
         /* background-color: aqua; */
     }
-    .navbar {
+    .bar {
         min-height: 90px;
+        -webkit-box-shadow: 0px 4px 10px -1px rgba(0,0,0,0.30);
+        -moz-box-shadow: 0px 4px 10px -1px rgba(0,0,0,0.30);
+        box-shadow: 0px 4px 10px -1px rgba(0,0,0,0.30);
     }
     .navbar-fixed-top .navbar-brand > img {
         position: inherit;
@@ -492,11 +448,12 @@ td.break-all-wrapping {
     .uh-branding-two {
         font-size: 1.0em;
     }
-    /* Make Navigation Toggle on Desktop Hover */
-    ul.nav li.dropdown:hover > ul.dropdown-menu {
-        display: block;
+
+    .ellipsis {
+        width: 100%;
     }
 }
+
 /* -------------------------------------------------------- */
 
 /* -------------------------------------------------------- */
@@ -506,7 +463,7 @@ td.break-all-wrapping {
         /* background-color: lightgreen; */
     }
     body {
-       /*  padding-top: 50px; */
+        padding-top: 50px;
     }
 
     #sidebar {
@@ -518,7 +475,7 @@ td.break-all-wrapping {
     }
     #main {
         width: 100%;
-        margin-top:-10px;
+        /* margin-top:-10px; */
     }
 }
 /* -------------------------------------------------------- */
@@ -599,7 +556,7 @@ td.break-all-wrapping {
     }
     #main {
         width: 100%;
-        padding-top: none;
+        /* padding-top: none; */
     }
     #application-form {
         padding: 10px;
@@ -613,4 +570,25 @@ td.break-all-wrapping {
 /* -------------------------------------------------------- */
 .progress-bar.animate {
    width: 100%;
+}
+
+.col-form-label {
+    padding-right: 0.0em;
+}
+/* -------------------------------------------------------- */
+/* Typeahead (jquery autocomplete)
+/* -------------------------------------------------------- */
+.ui-autocomplete {
+    z-index: 9999;
+    border: 1px solid black;
+}
+.ui-menu-item {
+    list-style: none;
+    text-align: -webkit-match-parent;
+}
+.ui-menu-item-wrapper {
+    text-align: -webkit-match-parent;
+}
+.ui-helper-hidden-accessible {
+    display: none;
 }

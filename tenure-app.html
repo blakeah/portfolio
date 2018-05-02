@@ -15,7 +15,136 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
+<style>
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.visible {
+    font-size: 2em;
+    z-index: 5000;
+    height: 100px;
+    width: 100%;
+    position:fixed;
+    top: 0px;
+    color: red;
+}
 
+.sticky {
+    background-color: #fff;
+    position: fixed;
+    width: 100%
+}
+.Absolute-Bottom {
+    height: auto;
+    z-index: 120;
+    float: left;
+    margin: auto;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+/* .sticky + #main {
+  padding-top: 100px;
+} */
+
+.margin {
+    margin-top: 80px;
+}
+.vbottom {
+    margin-top: 20px;
+    float:right;
+    display:inline-block;
+    vertical-align:middle !important;
+}
+#statusbar {
+    z-index: 100;
+    background-color: #fff;
+    width: 100%;
+    min-width: 220px;
+    max-width: 100%;
+    margin-top: -10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    float: left;
+    height:auto;
+    overflow-y:auto;
+    overflow-x:hidden;
+    border-bottom: 2px solid #C0C0C0;
+    font-size: .9em;
+}
+@media(max-width:960px) {
+    #statusbar {
+        margin-top: 50px;
+    }
+}
+
+@media(max-width:767px) {
+    .col-left {
+        width: 50%;
+    }
+    .col-right {
+        width: 50%;
+    }
+    #statusbar {
+        margin-top: 0px;
+      border: 1px solid #999;
+      border-radius: 3px;
+      width: 100%;
+      line-height: 130%;
+      min-width: 220px;
+      top: 0px;
+      max-width: 100%;
+      padding: 2%;
+      height:auto;
+      overflow-y:auto;
+      overflow-x:hidden;
+      font-size: 1em;
+    }
+    #statusbar h2 {
+      font-size: 1.5em;
+      margin-top:0px;
+    }
+    #statusbar button {
+        margin-top: 10px;
+    }
+    .Absolute-Bottom {
+        z-index: 120;
+        margin: auto;
+        position: relative;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+    .margin {
+        margin-top: 0px;
+    }
+}
+.fade-in  {
+    animation: slide-down .4s;
+    animation-fill-mode: both
+}
+@keyframes slide-down {
+    from {
+        z-index: 100;
+        position:fixed;
+        top: 0px;
+        opacity:0
+    }
+    to {
+        z-index: 100;
+        padding-top: 110px;
+        position:fixed;
+        /* padding-top: 70px; */
+        color: #000;
+        /* background-color: #185182; */
+        top: 0px;
+        opacity:1;
+    }
+}
+
+</style>
 </head>
 
 <body>
@@ -24,6 +153,7 @@
     </style>
 
     <!-- Page Content -->
+    <div class="visible">Note: this is a Static page: for Demo Purposes only!</div>
     <div class="container">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" th:fragment="copy">
             <div class="container">
@@ -53,34 +183,34 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Help <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a th:href="@{/help/contact}">Contact</a></li>
-                                <li><a th:href="@{/help/faq}">FAQ</a></li>
-                                <li><a th:href="@{/help/classifications}">Classifications</a></li>
-                                <li><a th:href="@{/help/guidelines}">Guidelines</a></li>
+                                <li><a>Contact</a></li>
+                                <li><a>FAQ</a></li>
+                                <li><a>Classifications</a></li>
+                                <li><a>Guidelines</a></li>
                             </ul>
                         </li>
                         <li class="dropdown" sec:authorize="hasAnyRole('ADMINISTRATOR', 'COORDINATOR', 'SUPERUSER')">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a th:href="@{/admin}" sec:authorize="hasRole('SUPERUSER')">Administration</a></li>
-                                <li class="divider" sec:authorize="hasRole('SUPERUSER')"></li>
-                                <li><a th:href="@{/admin/office/coordinator}" sec:authorize="hasAnyRole('ADMINISTRATOR', 'SUPERUSER')">Coordinators</a></li>
-                                <li class="divider" sec:authorize="hasAnyRole('ADMINISTRATOR', 'SUPERUSER')"></li>
-                                <li><a th:href="@{/admin/application}" sec:authorize="hasRole('SUPERUSER')">Applications</a></li>
-                                <li><a th:href="@{/admin/application/reviewer}" sec:authorize="hasRole('SUPERUSER')">Committees</a></li>
-                                <li><a th:href="@{/admin/application/role}">Application Roles</a></li>
-                                <li><a th:href="@{/admin/application/state}">Application States</a></li>
-                                <li><a th:href="@{/admin/application/type}">Application Types</a></li>
-                                <li><a th:href="@{/admin/appointment/rank}">Appointment Ranks</a></li>
-                                <li><a th:href="@{/admin/appointment/type}">Appointment Types</a></li>
-                                <li><a th:href="@{/admin/campus}">Campuses</a></li>
-                                <li><a th:href="@{/holiday}">Holidays</a></li>
-                                <li><a th:href="@{/admin/office}">Offices</a></li>
-                                <li class="divider" sec:authorize="hasRole('SUPERUSER')"></li>
-                                <li><a th:href="@{/admin/eligibility/eligibilities}" sec:authorize="hasRole('SUPERUSER')">Eligibilities</a></li>
-                                <li class="divider" sec:authorize="hasRole('SUPERUSER')"></li>
-                                <li><a th:href="@{/admin/user}" sec:authorize="hasRole('SUPERUSER')">Current User</a></li>
-                                <li><a th:href="@{/admin/lookup}" sec:authorize="hasRole('SUPERUSER')">Employee Lookup</a></li>
+                                <li><a >Administration</a></li>
+                                <li class="divider" ></li>
+                                <li><a>Coordinators</a></li>
+                                <li class="divider"></li>
+                                <li><a>Applications</a></li>
+                                <li><a>Committees</a></li>
+                                <li><a>Application Roles</a></li>
+                                <li><a>Application States</a></li>
+                                <li><a>Application Types</a></li>
+                                <li><a>Appointment Ranks</a></li>
+                                <li><a>Appointment Types</a></li>
+                                <li><a>Campuses</a></li>
+                                <li><a>Holidays</a></li>
+                                <li><a>Offices</a></li>
+                                <li class="divider"></li>
+                                <li><a>Eligibilities</a></li>
+                                <li class="divider"></li>
+                                <li><a>Current User</a></li>
+                                <li><a>Employee Lookup</a></li>
                             </ul>
                         </li>
                         <li sec:authorize="isAuthenticated()">
@@ -92,228 +222,340 @@
             </div>
             <!-- /.container -->
         </nav>
-        <div id="sidebar">
-            <div class="col-md-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Applicant Info</div>
-                    <div class="panel-body">
-                        <input type="hidden" id="applicationId" name="applicationId" th:value="${applicationId}" />
-                        <span id="appName" th:text="${appName}"></span><br /><br />
-                        <span id="appType" th:text="${appType}"></span>
-                        <span id="appRank" th:text="${appRank}"></span> <br /><br />
-                        <span id="appState" th:text="${appState}"></span>
+    </div>
+    <div th:fragment="copy">
+        <div id="statusbar">
+                <div class="container">
+                    <div class="row">
+                        <input type="hidden" id="applicationId" name="applicationId" th:value="${applicationId}"/>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left col-left"><h4>Applicant: <strong><span>Test Applicant</span></strong></h4></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-left col-left">Type: <strong><span>Tenure</span></strong></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-left col-left">Status: <strong><span>Submitted</span></strong></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-left col-left">Year: <strong><span>2017</span></strong></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-right col-right">
+                        <div id="start-review" ng-controller="StateJsController" data-ng-init="init()" th:if="${#authorization.expression('hasRole(''COORDINATOR'')')}  and ${#authorization.expression(isSubmittedState != null ? isSubmittedState : false)}">
+                            <form class="form-inline">
+                                <button type="button" class="btn btn-primary btn-sm" ng-click="startReview()">Start Review</button>
+                                &nbsp;
+                            </form>
+                        </div>
                     </div>
-                </div>
-
-                <div th:if="${#authorization.expression('hasRole(''COORDINATOR'')')}  and ${#authorization.expression(isSubmittedState != null ? isSubmittedState : false)}">
-                    <form class="form-inline">
-                        <button type="button" class="btn btn-disabled">Start Review</button> &nbsp;
-                    </form>
-                </div>
-
-                <div class="alert alert-success" id="alert-saved" role="alert" style="display: none;" >Inputs have been saved!</div>
-                <div class="alert alert-warning" id="alert-saving" role="alert" style="display: none;">Currently Saving Inputs.</div>
-            </div>
-        </div>
-        <div id="main">
-            <div>
-                <ul class="nav nav-tabs nav-justified text-left">
-                    <li class="active"><a data-toggle="pill" href="#application-form" id="application-form-tab">Eligibility</a></li>
-                    <li><a data-toggle="pill" href="#dossier-attachments" id="dossier-attachments-tab">Dossier</a></li>
-                    <li ><a data-toggle="pill" href="#reviewers" id="reviewers-tab">Committees</a></li>
-                    <li ><a data-toggle="pill" href="#recommendation" id="recommendation-tab">Recommendations</a></li>
-                </ul>
-            </div>
-
-            <div class="tab-content">
-
-                <!-- Bootstrap tab-panel fade Eligibility -->
-                <div id="maintab" class="panel maintab-subpanel">
-                    <div class="panel-heading">
-                        <span class="panel-title">&nbsp;</span>
-                        <h4 class="panel-title pull-right">
-                            <a data-toggle="collapse" href="#collapseE" style="color: white;">&nbsp;
-                                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-                            </a>
-                        </h4>
                     </div>
-                    <div class="panel-group tab-content tab-pane fade in active" id="application-form">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                               <div class="row">
-                                   <form class="">
-                                       <div>
-                                           <h4>Applicant Eligibility</h4>
-                                       </div>
-                                   </form>
-                               </div>
-                            </div>
-                           <div class="panel-body">
-                               <form class="form-horizontal" method="post" id="eligibility">
-                                   <div class="form-group">
-                                       <label for="campus" class="col-sm-2 control-label">Campus</label>
-                                       <div class="col-sm-10">
-                                           <select id="campusId" name="campusId" class="form-control">
-                                               <option value="">Select Campus</option>
-                                               <option value="2">Hilo</option>
-                                               <option value="7">Manoa</option>
-                                               <option value="10">West Oahu</option>
-                                               <option value="1">Hawaii</option>
-                                               <option value="3">Honolulu</option>
-                                               <option value="4">Kapiolani</option>
-                                               <option value="5">Kauai</option>
-                                               <option value="6">Leeward</option>
-                                               <option value="8">Maui</option>
-                                               <option value="9">Windward</option>
-                                           </select>
-                                       </div>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="subject" class="col-sm-2 control-label">Subject Area</label>
-                                       <div class="col-sm-10">
-                                           <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject Area"/>
-                                       </div>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="initial-rank" class="col-sm-2 control-label">Initial Appt Rank</label>
-                                       <div class="col-sm-10">
-                                           <select name="initialRankId" id="initialRankId" class="form-control">
-                                               <option value="">Select Initial Appointment Rank</option>
-                                               <option value="C2">C2</option>
-                                               <option value="C3">C3</option>
-                                               <option value="C4">C4</option>
-                                               <option value="C5">C5</option>
-                                           </select>
-                                       </div>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="initial-apt-date" class="col-sm-2 control-label">Initial Appt Date</label>
-                                       <div class="col-sm-10"  sec:authorize="hasRole('ROLE_COORDINATOR')">
-                                           <div class="input-group date" data-provide="datepicker">
-                                               <input type="text" class="form-control" id="initialDate" name="initialDate" placeholder="mm/dd/yyyy"></input>
-                                               <div class="input-group-addon">
-                                                   <span class="glyphicon glyphicon-th"></span>
-                                               </div>
-                                           </div>
-                                       </div>
-                                       <div class="col-sm-10" sec:authorize="!hasRole('ROLE_COORDINATOR')">
-                                               <input type="text" class="form-control" id="initial-appt-date" name="initial-appt-date" placeholder="mm/dd/yyyy" disabled="disabled"/>
-                                       </div>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="initial-appt-type" class="col-sm-2 control-label">Initial Appt Type</label>
-                                       <div class="col-sm-10">
-                                           <select name="initialTypeId" id="initialTypeId" onchange="enableSaveCheck();"  class="form-control" th:disabled="${!user.hasRole('COORDINATOR')}">
-                                               <option value="">Select Initial Appointment Type</option>
-                                               <option value="9">9 month</option>
-                                               <option value="11">11 month</option>
-                                           </select>
-                                       </div>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="current-rank" class="col-sm-2 control-label">Current Appt Rank</label>
-                                       <div class="col-sm-10">
-                                           <select name="currentRankId" id="currentRankId" class="form-control" onchange="enableSaveCheck();" th:disabled="${!user.hasRole('COORDINATOR')}">
-                                               <option value="">Select Current Appointment Rank</option>
-                                               <option value="C2">C2</option>
-                                               <option value="C3">C3</option>
-                                               <option value="C4">C4</option>
-                                               <option value="C5">C5</option>
-                                           </select>
-                                       </div>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="current-appt-date" class="col-sm-2 control-label">Current Appt Date</label>
-                                       <div class="col-sm-10">
-                                           <div class="input-group date" data-provide="datepicker">
-                                               <input type="text" class="form-control" id="currentApptDate" name="currentApptDate" placeholder="mm/dd/yyyy" />
-                                               <div class="input-group-addon">
-                                                   <span class="glyphicon glyphicon-th"></span>
-                                               </div>
-                                           </div>
-                                       </div>
-                                       <div class="col-sm-10">
-                                               <input type="text" class="form-control" id="current-appt-date" name="current-appt-date" placeholder="mm/dd/yyyy" disabled="disabled"/>
-                                       </div>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="current-appt-type" class="col-sm-2 control-label">Current Appt Type</label>
-                                       <div class="col-sm-10">
-                                           <select name="currentTypeId" id="currentTypeId" class="form-control" onchange="enableSaveCheck();" th:disabled="${!user.hasRole('COORDINATOR')}">
-                                               <option value="">Select Current Appointment Type</option>
-                                               <option value="9">9 month</option>
-                                               <option value="11">11 month</option>
-                                           </select>
-                                       </div>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="tenure-consideration" class="col-sm-2 control-label text-left">Tenure Consideration</label>
-                                       <div class="col-sm-10">
-                                           <select name="considerationCode" id="considerationCode" class="form-control">
-                                               <option value="appropriate">Appropriate</option>
-                                               <option value="before">Before Designated Year</option>
-                                               <option value="after">After Designated Year</option>
-                                           </select>
-                                       </div>
-                                   </div>
-                                   <div class="form-group">
-                                       <form class="form-inline">
-                                           <div class="col-xs-6 col-md-offset-2 col-md-6 text-left">
-                                               <button type="submit" id="save-button" class="btn btn-default pull-left" th:disabled="true">Save</button>
-                                           </div>
-                                       </form>
-                                   </div>
-                               </form>
-                               <div class="form-group" id="approval-after-upload" style="display: none;">
-                                   <form class="well form-horizontal" action="#" method="post" id="uploadform">
-                                       <table class="table">
-                                           <tr>
-                                               <td>
-                                                   <label for="file-upload" class="control-label">Upload the Chancellor's approval for extending the probationary period:</label>
-                                               </td>
-                                               <td>
-                                                   <input class="btn btn-default" type="file" name="file"></input>
-                                               </td>
-                                               <td>
-                                                   <button class="btn btn-default" type="submit" value="Upload">Upload <i class="glyphicon glyphicon-upload"></i></button>
-                                               </td>
-                                           </tr>
-                                       </table>
-                                   </form>
-                               </div>
-                               <div class="form-group" id="approval-before-upload" style="display: none;">
-                                   <form class="well form-horizontal" enctype="multipart/form-data" action="#" th:action="@{/admin/file}" method="post" id="uploadform">
-                                       <table>
-                                           <tr>
-                                               <td>
-                                                   <label for="file-upload" class="control-label">Upload the Chancellor's approval for shortening the probationary period:</label>
-                                               </td>
-                                               <td>
-                                                   <input class="btn btn-default" type="file" name="file"></input>
-                                               </td>
-                                               <td>
-                                                   <button class="btn btn-default" type="submit" value="Upload">Upload <i class="glyphicon glyphicon-upload"></i></button>
-                                               </td>
-                                           </tr>
-                                       </table>
-                                   </form>
-                               </div>
-                           </div>
-                       </div>
-                    </div>
+                        <div class="alert alert-success" id="alert-saved" role="alert"
+                            style="display: none;">Inputs have been saved!</div>
+                        <div class="alert alert-warning" id="alert-saving" role="alert"
+                            style="display: none;">Currently Saving Inputs.</div>
                 </div>
-                <!-- End Bootstrap tab-panel fade Exclusion form. -->
-            </div>
         </div>
     </div>
+        <div class="container">
+            <div id="main">
+                <div id="space">
+                    <ul class="nav nav-tabs nav-justified text-left">
+                        <li class="active"><a data-toggle="pill" href="#application-form" id="application-form-tab" >Eligibility</a></li>
+                        <li><a data-toggle="pill" href="#dossier-attachments" id="dossier-attachments-tab">Dossier</a></li>
+                        <li><a data-toggle="pill" href="#reviewers" id="reviewers-tab" >Committees</a></li>
+                        <li><a data-toggle="pill" href="#exclusions" id="exclusions-tab" >Exclusions</a></li>
+                        <li><a data-toggle="pill" href="#recommendation" id="recommendation-tab">Review Status</a></li>
+                   </ul>
+                </div>
+
+                <div class="tab-content">
+                    <!-- Bootstrap tab-panel fade Details form -->
+                    <div id="application-form" class="tab-pane fade in active">
+                        <div th:fragment="copy" th:remove="tag">
+                            <div>
+                                <div id="maintab" class="panel maintab-subpanel">
+                                    <div class="panel-heading" >
+                                        <span class="panel-title">&nbsp;</span>
+                                        <h4 class="panel-title pull-right">
+                                            <a data-toggle="collapse" data-target="#collapseA">&nbsp;
+                                                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-group">
+                                        <div class="panel">
+                                            <div id="collapseA" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                   <span th:utext="#{detail.help}"></span><br/>
+                                                </div>
+                                            </div>
+                                            <div id="eligibility-tab" class="panel-body">
+                                                <form id="detailForm" name="detailForm" method="post">
+                                                <fieldset ng-disabled="!isCoordinator">
+                                                    <div class="well well-sm">
+                                                        <div class="form-group row">
+                                                        <div class="col-md-6 col-sm-12 col-xs-12">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="Campus">Campus</label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <input type="text" class="form-control" placeholder="UH Manoa" />
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-12 col-xs-12">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="subject-area">Subject Area</label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <input type="text" class="form-control" id="subject" name="subject" ng-model="application.detail.subject" placeholder="English"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    <hr/>
+                                                    <div class="form-group row">
+                                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 col-sm-3 col-form-label text-right" for="#"></label>
+                                                        <div class="col-md-8 col-sm-8">
+                                                            <input type="text" class="form-control" placeholder="Primary Department" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 col-sm-3 col-form-label text-right" for="#"></label>
+                                                        <div class="col-md-8 col-sm-8">
+                                                            <input type="text" class="form-control" placeholder="Primary College" />
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="#"></label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <input type="text" class="form-control" id="#" name="subject" placeholder="Secondary Department"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="#"></label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <input type="text" class="form-control" id="#" name="subject" placeholder="Secondary College"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+
+                                                    <!--Begin section header Initial Probationary Appointment -->
+                                                    <div class="row">
+                                                    <div class="col-md-6">
+                                                    <h5>Initial Probationary Appointment</h5>
+                                                    <div class="well well-sm">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right">Classification</label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <select class="form-control">
+                                                                    <option>Select Classification</option>
+                                                                    <option></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="initial-rank">Rank</label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <select class="form-control">
+                                                                    <option value="">Select Initial Appointment Rank</option>
+                                                                    <option ></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="initialDate">Date</label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <div class="input-group date" ng-controller="DatepickerController" style="padding-right: 0px; margin-right: -8px;">
+                                                                    <input id="initialDate" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="application.detail.initialDateDate" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                                                    <span class="input-group-btn">
+                                                                        <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar app-color"></i></button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="initial-appt-type">Type</label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <select class="form-control" >
+                                                                    <option value="">Select Initial Appointment Type</option>
+                                                                    <option ></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div> <!--End col-md-6 -->
+
+                                                    <!-- End section header Initial Probationary Appointment -->
+
+                                                    <!--Begin section header Current Appointment -->
+                                                    <div class="col-md-6">
+                                                    <h5>Current Appointment</h5>
+                                                    <div class="well well-sm">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right">Classification</label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <select class="form-control">
+                                                                    <option value="">Select Classification</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="currentRankId">Rank</label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <select class="form-control">
+                                                                    <option value="">Select Current Appointment Rank</option>
+                                                                    <option ></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="currentApptDate">Date</label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <div class="input-group date" ng-controller="DatepickerController" style="padding-right: 0px; margin-right: -8px;">
+                                                                    <input id="currentApptDate" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="application.detail.currentDateDate" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                                                    <span class="input-group-btn">
+                                                                        <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar app-color"></i></button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="current-appt-type">Type</label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <select class="form-control" id="currentTypeId" name="currentTypeId" ng-model="application.detail.currentTypeId">
+                                                                    <option value="">Select Current Appointment Type</option>
+                                                                    <option  ></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!--End col-md-6 -->
+                                            </div><!--End Row -->
+                                                    <!--End section header Current Appointment -->
+                                                        <h5>Tenure/Promotion</h5>
+                                                        <div class="well well-sm col-md-12">
+                                                            <div class="col-md-6 row">
+                                                            <div class="form-group row" style="background-color: transparent;">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="consideration">Consideration</label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <select class="form-control" id="consideration" name="consideration" ng-model="application.detail.consideration">
+                                                                        <option value="0">Appropriate</option>
+                                                                        <option value="before">Prior to Designated Year</option>
+                                                                        <option value="after">After Designated Year</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row" ng-show="showMemoField(application)">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="considerationFile">Memo</label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <div class="input-group"  style="padding-right: 0px; margin-right: -8px;">
+                                                                        <div class="input form-control">
+                                                                            <a class="ellipsis"
+                                                                               id="considerationFile"
+                                                                               ng-model="considerationFile.name"
+                                                                               th:text="@{{{considerationFile.name}}}"
+                                                                               th:href="@{{{application.id}}/consideration/{{considerationFile.name}}/}"
+                                                                               th:target="@{_app_{{application.id}}}" target="_appfiledwn"></a>
+                                                                        </div>
+                                                                        <span class="input-group-btn">
+                                                                            <button type="button" class="btn btn-default pull-right" ng-click="uploadConsiderationFile(application)"><i class="glyphicon glyphicon-file app-color"></i></button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 row">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-6 col-sm-3 col-form-label text-right" for="#">Date of Tenure</label>
+                                                                <div class="col-md-6 col-sm-8">
+                                                                    <div class="input-group date" ng-controller="DatepickerController" style="padding-right: 0px; margin-right: -8px;">
+                                                                        <input id="#" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="#" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                                                        <span class="input-group-btn">
+                                                                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar app-color"></i></button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-6 col-sm-3 col-form-label text-right" for="#">Date of Last Promotion</label>
+                                                                <div class="col-md-6 col-sm-8">
+                                                                    <div class="input-group date" ng-controller="DatepickerController" style="padding-right: 0px; margin-right: -8px;">
+                                                                        <input id="#" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="#" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                                                        <span class="input-group-btn">
+                                                                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar app-color"></i></button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+
+                                                        <h5>Waver of Minimum Qualifications</h5>
+                                                        <div class="well well-sm col-md-12">
+                                                            <div class="form-group row" >
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="#">Educational Requirement</label>
+                                                                <div class="col-md-3 col-sm-3">
+                                                                    <div class="input-group"  style="padding-right: 0px; margin-right: -8px;">
+                                                                        <div class="input form-control">
+                                                                            <a></a>
+                                                                        </div>
+                                                                        <span class="input-group-btn">
+                                                                            <button type="button" class="btn btn-default pull-right" ng-click="#"><i class="glyphicon glyphicon-file app-color"></i></button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="#">Service Requirement</label>
+                                                                <div class="col-md-3 col-sm-3">
+                                                                    <div class="input-group"  style="padding-right: 0px; margin-right: -8px;">
+                                                                        <div class="input form-control">
+                                                                            <a></a>
+                                                                        </div>
+                                                                        <span class="input-group-btn">
+                                                                            <button type="button" class="btn btn-default pull-right" ng-click="#"><i class="glyphicon glyphicon-file app-color"></i></button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    <div class="form-group row" style="height: 60px;">
+                                                        <div class="col-xs-12 col-sm-2 text-left" >
+                                                            <button type="submit" id="save-button" class="btn btn-primary pull-left" ng-disabled="!detailForm.$dirty" th:disabled="true" ng-click="save(application)">Save Eligibility</button>
+                                                        </div>
+                                                        <div class="clearfix visible-xs"><br/>&nbsp;<br/></div>
+                                                        <div class="col-xs-12 col-sm-offset-1 col-sm-9 text-left" ng-cloak="true" ng-show="submissionSuccess &amp;&amp; !detailForm.$dirty">
+                                                            <div class="alert alert-success" role="alert" style=" padding-top: 7px; padding-bottom: 7px;">
+                                                                Your updates were saved!
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- End Bootstrap tab-panel fade Details Form -->
+
+                    <!-- Bootstrap tab-panel fade Dossier/Attachments -->
+
+                </div>
+            </div>
+
+        </div>
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+<script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript">
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
     $(document).ready(function() {
     /*disable non active tabs*/
     $('.nav li').not('.active').addClass('disabled');
@@ -324,7 +566,28 @@
         $('.nav li.active').next('li').removeClass('disabled');
         $('.nav li.active').next('li').find('a').attr("data-toggle","tab")
     });
-});</script>
+});
+</script>
+<script type="text/javascript">
+var navbar = $("#statusbar");
+var pushDown = $("#main");
+
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 90) {
+        $(navbar).addClass('fade-in')
+        $(pushDown).addClass("margin");
+    } else {
+        $(navbar).removeClass('fade-in')
+        $(pushDown).removeClass("margin");
+    }
+    if ($(window).width() <= 960) {
+        $(navbar).removeClass('fade-in')
+        $(pushDown).removeClass("margin");
+    }
+});
+</script>
+
+
 
 </body>
 
