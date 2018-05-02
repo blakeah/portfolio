@@ -18,7 +18,7 @@
 <style>
 /* The sticky class is added to the navbar with JS when it reaches its scroll position */
 .visible {
-    font-size: 2em;
+    font-size: 1em;
     z-index: 5000;
     height: 100px;
     width: 100%;
@@ -169,10 +169,10 @@
                         <img class="img-responsive" th:src="@{/images/seal.jpg}" src="images/seal.jpg" alt=""></img>
                     </a>
 
-                    <a class="navbar-brand uh-nav-app-name" th:href="@{/}" sec:authorize="isAnonymous()">
+                    <a class="navbar-brand uh-nav-app-name" th:href="@{/}" >
                         University of Hawai&#39;i
                     </a>
-                    <a class="navbar-brand uh-nav-app-name" th:href="@{/}" sec:authorize="isAuthenticated()">
+                    <a class="navbar-brand uh-nav-app-name" th:href="@{/}" >
                         Tenure <span class="amp">&amp;</span> Promotion
                     </a>
                 </div>
@@ -189,7 +189,7 @@
                                 <li><a>Guidelines</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown" sec:authorize="hasAnyRole('ADMINISTRATOR', 'COORDINATOR', 'SUPERUSER')">
+                        <li class="dropdown" >
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a >Administration</a></li>
@@ -213,7 +213,7 @@
                                 <li><a>Employee Lookup</a></li>
                             </ul>
                         </li>
-                        <li sec:authorize="isAuthenticated()">
+                        <li >
                             <a th:href="@{/logout}">Logout</a>
                         </li>
                     </ul>
@@ -233,7 +233,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-left col-left">Status: <strong><span>Submitted</span></strong></div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-left col-left">Year: <strong><span>2017</span></strong></div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-right col-right">
-                        <div id="start-review" ng-controller="StateJsController" data-ng-init="init()" th:if="${#authorization.expression('hasRole(''COORDINATOR'')')}  and ${#authorization.expression(isSubmittedState != null ? isSubmittedState : false)}">
+                        <div id="start-review" ng-controller="StateJsController" data-ng-init="init()">
                             <form class="form-inline">
                                 <button type="button" class="btn btn-primary btn-sm" ng-click="startReview()">Start Review</button>
                                 &nbsp;
