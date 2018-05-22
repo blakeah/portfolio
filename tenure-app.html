@@ -147,7 +147,7 @@
         }
     </style>
     <!-- Page Content -->
-    <div id="note">Note: this is a Static page: for Demo Purposes only!</div>
+    <div id="note">Note: this is a static page - <b>FOR DEMO PURPOSES ONLY!</b></div>
     <div class="container">
         <nav class="navbar navbar-default navbar-fixed-top" id="global-nav" role="navigation" th:fragment="copy">
             <div class="container">
@@ -422,7 +422,7 @@
                                                         <div class="form-group row" style="background-color: transparent;">
                                                             <label class="col-md-3 col-sm-3 col-form-label text-right" for="consideration">Consideration</label>
                                                             <div class="col-md-8 col-sm-8">
-                                                                <select class="form-control" id="consideration" name="consideration" ng-model="application.detail.consideration">
+                                                                <select class="form-control" id="consideration" name="consideration" >
                                                                         <option value="0">Appropriate</option>
                                                                         <option value="before">Prior to Designated Year</option>
                                                                         <option value="after">After Designated Year</option>
@@ -434,10 +434,10 @@
                                                             <div class="col-md-8 col-sm-8">
                                                                 <div class="input-group" style="padding-right: 0px; margin-right: -8px;">
                                                                     <div class="input form-control">
-                                                                        <a class="ellipsis" id="considerationFile" ng-model="considerationFile.name" th:text="@{{{considerationFile.name}}}" th:href="@{{{application.id}}/consideration/{{considerationFile.name}}/}" th:target="@{_app_{{application.id}}}" target="_appfiledwn"></a>
+                                                                        <a ></a>
                                                                     </div>
                                                                     <span class="input-group-btn">
-                                                                            <button type="button" class="btn btn-default pull-right" ng-click="uploadConsiderationFile(application)"><i class="glyphicon glyphicon-file app-color"></i></button>
+                                                                            <button type="button" class="btn btn-default pull-right"><i class="glyphicon glyphicon-file app-color"></i></button>
                                                                         </span>
                                                                 </div>
                                                             </div>
@@ -448,7 +448,7 @@
                                                             <label class="col-md-6 col-sm-3 col-form-label text-right" for="#">Date of Tenure</label>
                                                             <div class="col-md-6 col-sm-8">
                                                                 <div class="input-group date" ng-controller="DatepickerController" style="padding-right: 0px; margin-right: -8px;">
-                                                                    <input id="#" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="#" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                                                    <input id="#" type="text" class="form-control"/>
                                                                     <span class="input-group-btn">
                                                                             <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar app-color"></i></button>
                                                                         </span>
@@ -459,7 +459,7 @@
                                                             <label class="col-md-6 col-sm-3 col-form-label text-right" for="#">Date of Last Promotion</label>
                                                             <div class="col-md-6 col-sm-8">
                                                                 <div class="input-group date" ng-controller="DatepickerController" style="padding-right: 0px; margin-right: -8px;">
-                                                                    <input id="#" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="#" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                                                    <input id="#" type="text" class="form-control"/>
                                                                     <span class="input-group-btn">
                                                                             <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar app-color"></i></button>
                                                                         </span>
