@@ -1,161 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.003.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-<style>
-/* The sticky class is added to the navbar with JS when it reaches its scroll position */
-.visible {
-    font-size: 1em;
-    z-index: 5000;
-    height: 100px;
-    width: 100%;
-    position:fixed;
-    top: 0px;
-    color: red;
-}
-
-.sticky {
-    background-color: #fff;
-    position: fixed;
-    width: 100%
-}
-.Absolute-Bottom {
-    height: auto;
-    z-index: 120;
-    float: left;
-    margin: auto;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    bottom: 0;
-    right: 0;
-}
-/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
-/* .sticky + #main {
-  padding-top: 100px;
-} */
-
-.margin {
-    margin-top: 80px;
-}
-.vbottom {
-    margin-top: 20px;
-    float:right;
-    display:inline-block;
-    vertical-align:middle !important;
-}
-#statusbar {
-    z-index: 100;
-    background-color: #fff;
-    width: 100%;
-    min-width: 220px;
-    max-width: 100%;
-    margin-top: -10px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    float: left;
-    height:auto;
-    overflow-y:auto;
-    overflow-x:hidden;
-    border-bottom: 2px solid #C0C0C0;
-    font-size: .9em;
-}
-@media(max-width:960px) {
-    #statusbar {
-        margin-top: 50px;
-    }
-}
-
-@media(max-width:767px) {
-    .col-left {
-        width: 50%;
-    }
-    .col-right {
-        width: 50%;
-    }
-    #statusbar {
-        margin-top: 0px;
-      border: 1px solid #999;
-      border-radius: 3px;
-      width: 100%;
-      line-height: 130%;
-      min-width: 220px;
-      top: 0px;
-      max-width: 100%;
-      padding: 2%;
-      height:auto;
-      overflow-y:auto;
-      overflow-x:hidden;
-      font-size: 1em;
-    }
-    #statusbar h2 {
-      font-size: 1.5em;
-      margin-top:0px;
-    }
-    #statusbar button {
-        margin-top: 10px;
-    }
-    .Absolute-Bottom {
-        z-index: 120;
-        margin: auto;
-        position: relative;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-    }
-    .margin {
-        margin-top: 0px;
-    }
-}
-.fade-in  {
-    animation: slide-down .4s;
-    animation-fill-mode: both
-}
-@keyframes slide-down {
-    from {
-        z-index: 100;
-        position:fixed;
-        top: 0px;
-        opacity:0
-    }
-    to {
-        z-index: 100;
-        padding-top: 110px;
-        position:fixed;
-        /* padding-top: 70px; */
-        color: #000;
-        /* background-color: #185182; */
-        top: 0px;
-        opacity:1;
-    }
-}
-
-</style>
 </head>
-
 <body>
+    <!-- Custom CSS -->
     <style>
+        #global-nav {
+            position: fixed;
+            top: 0;
+            z-index: 9999;
+            height: 100px;
+            width: 100%;
+            background: #fff;
+            color: #000;
+            -webkit-transition: height .3s, line-height .3s;
+            /* Safari */
+            transition: height .3s, line-height .3s;
+        }
+        #menu-move {
+            -webkit-transition: padding-top .3s;
+            /* Safari */
+            transition: padding-top .3s;
+        }
+        #remove-brand {
+            -webkit-transition: opacity .5s;
+            transition: opacity .5s;
+        }
+        #move-brand {
+            -webkit-transition: left .2s, padding-left .2s, padding-top .2s;
+            /* Safari */
+            transition: left .2s, padding-left .2s, padding-top .2s;
+        }
+        .remove-padding {
+            padding-top: 0px !important;
+        }
+        .brand-padding {
+            position: relative !important;
+            top: -35px !important;
+            left: 10px !important;
+            padding-left: 0px !important;
+            padding-top: -50px !important;
+        }
+        .scrolled-nav {
+            height: 40px !important;
+            line-height: 40px !important;
+        }
+        @media(max-width:767px) {
+            #global-nav {
+                height: 50px;
+            }
+        }
+        /* The sticky class is added to the navbar with JS when it reaches its scroll position */
+        .sticky {
+            background-color: #fff;
+            top: 100px;
+            position: fixed;
+            width: 100%
+        }
+        /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+        .margin {
+            margin-top: 40px;
+        }
+        .drop-shadow {
+            border: none;
+            transition: all .2s ease !important;
+            -webkit-transition: all .2s ease !important;
+            -moz-transition: all .2s ease !important;
+            -webkit-box-shadow: 0 8px 8px 2px rgba(0, 0, 0, 0.1);
+            -moz-box-shadow: 0 8px 8px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.1);
+        }
 
+        #statusbar {
+            z-index: 100;
+            background-color: #fff;
+            width: 100%;
+            min-width: 220px;
+            max-width: 100%;
+            margin-top: -50px;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            float: left;
+            height: auto;
+            overflow-y: auto;
+            overflow-x: hidden;
+            /* border-bottom: 1px solid #D3D3D3; */
+            font-size: .9em;
+        }
+
+        @media(max-width:960px) {
+            #statusbar {
+                margin-top: 50px;
+            }
+        }
+
+        @media(max-width:767px) {
+            .col-left {
+                width: 50%;
+            }
+            .col-right {
+                width: 50%;
+            }
+            #statusbar {
+                margin-top: 0px;
+                border: 1px solid #999;
+                border-radius: 3px;
+                width: 100%;
+                line-height: 130%;
+                min-width: 220px;
+                top: 0px;
+                max-width: 100%;
+                padding: 2%;
+                height: auto;
+                overflow-y: auto;
+                overflow-x: hidden;
+                font-size: 1em;
+            }
+            #statusbar h2 {
+                font-size: 1.5em;
+                margin-top: 0px;
+            }
+            #statusbar button {
+                margin-top: 10px;
+            }
+            .margin {
+                margin-top: 0px;
+            }
+        }
+
+        #note {
+            z-index: 1000000;
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            color: red;
+            font-size: 1em;
+        }
     </style>
-
     <!-- Page Content -->
-    <div class="visible">Note: this is a Static page: for Demo Purposes only!</div>
+    <div id="note">Note: this is a Static page: for Demo Purposes only!</div>
     <div class="container">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" th:fragment="copy">
+        <nav class="navbar navbar-default navbar-fixed-top" id="global-nav" role="navigation" th:fragment="copy">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -165,20 +159,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" th:href="@{/}">
-                        <img class="img-responsive" th:src="@{/images/seal.jpg}" src="images/seal.jpg" alt=""></img>
+                    <a class="navbar-brand" th:href="@{/}" id="remove-brand">
+                        <img id="responsive-seal" class="img-responsive" th:src="@{/images/seal.jpg}"  src="images/seal.jpg" alt=""></img>
                     </a>
-
-                    <a class="navbar-brand uh-nav-app-name" th:href="@{/}" >
-                        University of Hawai&#39;i
-                    </a>
-                    <a class="navbar-brand uh-nav-app-name" th:href="@{/}" >
+                    <a class="navbar-brand uh-nav-app-name" th:href="@{/}" id="move-brand">
                         Tenure <span class="amp">&amp;</span> Promotion
                     </a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="tenure-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right" id="menu-move">
                         <li><a th:href="@{/}">Home</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Help <span class="caret"></span></a>
@@ -189,11 +179,11 @@
                                 <li><a>Guidelines</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown" >
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a >Administration</a></li>
-                                <li class="divider" ></li>
+                                <li><a>Administration</a></li>
+                                <li class="divider"></li>
                                 <li><a>Coordinators</a></li>
                                 <li class="divider"></li>
                                 <li><a>Applications</a></li>
@@ -213,7 +203,7 @@
                                 <li><a>Employee Lookup</a></li>
                             </ul>
                         </li>
-                        <li >
+                        <li>
                             <a th:href="@{/logout}">Logout</a>
                         </li>
                     </ul>
@@ -225,367 +215,391 @@
     </div>
     <div th:fragment="copy">
         <div id="statusbar">
-                <div class="container">
-                    <div class="row">
-                        <input type="hidden" id="applicationId" name="applicationId" th:value="${applicationId}"/>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left col-left"><h4>Applicant: <strong><span>Test Applicant</span></strong></h4></div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-left col-left">Type: <strong><span>Tenure</span></strong></div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-left col-left">Status: <strong><span>Submitted</span></strong></div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-left col-left">Year: <strong><span>2017</span></strong></div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-right col-right">
-                        <div id="start-review" ng-controller="StateJsController" data-ng-init="init()">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left col-left">
+                        <h4>Applicant: <strong><span>Blake Hixson</span></strong></h4></div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-left col-left">Type: <strong><span>Tenure</span></strong></div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-left col-left">Status: <strong><span>Submitted</span></strong></div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-left col-left">Year: <strong><span>2017</span></strong></div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-right col-right">
+                        <div id="start-review">
                             <form class="form-inline">
-                                <button type="button" class="btn btn-primary btn-sm" ng-click="startReview()">Start Review</button>
-                                &nbsp;
+                                <button type="button" class="btn btn-primary btn-sm">Start Review</button> &nbsp;
                             </form>
                         </div>
                     </div>
-                    </div>
-                        <div class="alert alert-success" id="alert-saved" role="alert"
-                            style="display: none;">Inputs have been saved!</div>
-                        <div class="alert alert-warning" id="alert-saving" role="alert"
-                            style="display: none;">Currently Saving Inputs.</div>
                 </div>
+                <div class="alert alert-success" id="alert-saved" role="alert" style="display: none;">Inputs have been saved!</div>
+                <div class="alert alert-warning" id="alert-saving" role="alert" style="display: none;">Currently Saving Inputs.</div>
+            </div>
         </div>
     </div>
-        <div class="container">
-            <div id="main">
-                <div id="space">
-                    <ul class="nav nav-tabs nav-justified text-left">
-                        <li class="active"><a data-toggle="pill" href="#application-form" id="application-form-tab" >Eligibility</a></li>
-                        <li><a data-toggle="pill" href="#dossier-attachments" id="dossier-attachments-tab">Dossier</a></li>
-                        <li><a data-toggle="pill" href="#reviewers" id="reviewers-tab" >Committees</a></li>
-                        <li><a data-toggle="pill" href="#exclusions" id="exclusions-tab" >Exclusions</a></li>
-                        <li><a data-toggle="pill" href="#recommendation" id="recommendation-tab">Review Status</a></li>
-                   </ul>
-                </div>
-
-                <div class="tab-content">
-                    <!-- Bootstrap tab-panel fade Details form -->
-                    <div id="application-form" class="tab-pane fade in active">
-                        <div th:fragment="copy" th:remove="tag">
-                            <div>
-                                <div id="maintab" class="panel maintab-subpanel">
-                                    <div class="panel-heading" >
-                                        <span class="panel-title">&nbsp;</span>
-                                        <h4 class="panel-title pull-right">
-                                            <a data-toggle="collapse" data-target="#collapseA">&nbsp;
+    <div class="container">
+        <div id="main">
+            <div id="space">
+                <ul class="nav nav-tabs nav-justified text-left">
+                    <li class="active"><a data-toggle="pill">Eligibility</a></li>
+                    <li><a data-toggle="pill">Dossier</a></li>
+                    <li><a data-toggle="pill">Committees</a></li>
+                    <li><a data-toggle="pill">Exclusions</a></li>
+                    <li><a data-toggle="pill">Review Status</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <!-- Bootstrap tab-panel fade Details form -->
+                <div id="application-form" class="tab-pane fade in active">
+                    <div>
+                        <div>
+                            <div id="maintab" class="panel maintab-subpanel">
+                                <div class="panel-heading">
+                                    <span class="panel-title">&nbsp;</span>
+                                    <h4 class="panel-title pull-right">
+                                            <a>&nbsp;
                                                 <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
                                             </a>
                                         </h4>
-                                    </div>
-                                    <div class="panel-group">
-                                        <div class="panel">
-                                            <div id="collapseA" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                   <span th:utext="#{detail.help}"></span><br/>
-                                                </div>
+                                </div>
+                                <div class="panel-group">
+                                    <div class="panel">
+                                        <div id="collapseA" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <span th:utext="#{detail.help}"></span><br/>
                                             </div>
-                                            <div id="eligibility-tab" class="panel-body">
-                                                <form id="detailForm" name="detailForm" method="post">
-                                                <fieldset ng-disabled="!isCoordinator">
-                                                    <div class="well well-sm">
-                                                        <div class="form-group row">
+                                        </div>
+                                        <div id="eligibility-tab" class="panel-body">
+                                            <form id="detailForm" name="detailForm" method="post">
+                                                <div class="well well-sm">
+                                                    <div class="form-group row">
                                                         <div class="col-md-6 col-sm-12 col-xs-12">
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="Campus">Campus</label>
-                                                            <div class="col-md-8 col-sm-8">
-                                                                <input type="text" class="form-control" placeholder="UH Manoa" />
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="Campus">Campus</label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="UH Manoa" />
+                                                                </div>
                                                             </div>
-                                                        </div>
                                                         </div>
                                                         <div class="col-md-6 col-sm-12 col-xs-12">
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 col-sm-3 col-form-label text-right" for="subject-area">Subject Area</label>
                                                                 <div class="col-md-8 col-sm-8">
-                                                                    <input type="text" class="form-control" id="subject" name="subject" ng-model="application.detail.subject" placeholder="English"/>
+                                                                    <input type="text" class="form-control" id="subject" name="subject" ng-model="application.detail.subject" placeholder="English" />
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        </div>
+                                                    </div>
                                                     <hr/>
                                                     <div class="form-group row">
-                                                    <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 col-sm-3 col-form-label text-right" for="#"></label>
-                                                        <div class="col-md-8 col-sm-8">
-                                                            <input type="text" class="form-control" placeholder="Primary Department" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 col-sm-3 col-form-label text-right" for="#"></label>
-                                                        <div class="col-md-8 col-sm-8">
-                                                            <input type="text" class="form-control" placeholder="Primary College" />
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-sm-12 col-xs-12">
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="#"></label>
-                                                            <div class="col-md-8 col-sm-8">
-                                                                <input type="text" class="form-control" id="#" name="subject" placeholder="Secondary Department"/>
+                                                        <div class="col-md-6 col-sm-12 col-xs-12">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="#"></label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Primary Department" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="#"></label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Primary College" />
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="#"></label>
-                                                            <div class="col-md-8 col-sm-8">
-                                                                <input type="text" class="form-control" id="#" name="subject" placeholder="Secondary College"/>
+                                                        <div class="col-md-6 col-sm-12 col-xs-12">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="#"></label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <input type="text" class="form-control" id="#" name="subject" placeholder="Secondary Department" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="#"></label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <input type="text" class="form-control" id="#" name="subject" placeholder="Secondary College" />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    </div>
-                                                    </div>
-
-                                                    <!--Begin section header Initial Probationary Appointment -->
-                                                    <div class="row">
+                                                </div>
+                                                <!--Begin section header Initial Probationary Appointment -->
+                                                <div class="row">
                                                     <div class="col-md-6">
-                                                    <h5>Initial Probationary Appointment</h5>
-                                                    <div class="well well-sm">
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3 col-sm-3 col-form-label text-right">Classification</label>
-                                                            <div class="col-md-8 col-sm-8">
-                                                                <select class="form-control">
+                                                        <h5>Initial Probationary Appointment</h5>
+                                                        <div class="well well-sm">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right">Classification</label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <select class="form-control">
                                                                     <option>Select Classification</option>
                                                                     <option></option>
                                                                 </select>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="initial-rank">Rank</label>
-                                                            <div class="col-md-8 col-sm-8">
-                                                                <select class="form-control">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="initial-rank">Rank</label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <select class="form-control">
                                                                     <option value="">Select Initial Appointment Rank</option>
                                                                     <option ></option>
                                                                 </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="initialDate">Date</label>
-                                                            <div class="col-md-8 col-sm-8">
-                                                                <div class="input-group date" ng-controller="DatepickerController" style="padding-right: 0px; margin-right: -8px;">
-                                                                    <input id="initialDate" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="application.detail.initialDateDate" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
-                                                                    <span class="input-group-btn">
-                                                                        <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar app-color"></i></button>
-                                                                    </span>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="initial-appt-type">Type</label>
-                                                            <div class="col-md-8 col-sm-8">
-                                                                <select class="form-control" >
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="initialDate">Date</label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <div class="input-group date" style="padding-right: 0px; margin-right: -8px;">
+                                                                        <input id="initialDate" type="text" class="form-control" />
+                                                                        <span class="input-group-btn">
+                                                                        <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar app-color"></i></button>
+                                                                    </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="initial-appt-type">Type</label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <select class="form-control">
                                                                     <option value="">Select Initial Appointment Type</option>
                                                                     <option ></option>
                                                                 </select>
+                                                                </div>
                                                             </div>
                                                         </div>
-
                                                     </div>
-                                                </div> <!--End col-md-6 -->
+                                                    <!--End col-md-6 -->
 
                                                     <!-- End section header Initial Probationary Appointment -->
 
                                                     <!--Begin section header Current Appointment -->
                                                     <div class="col-md-6">
-                                                    <h5>Current Appointment</h5>
-                                                    <div class="well well-sm">
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3 col-sm-3 col-form-label text-right">Classification</label>
-                                                            <div class="col-md-8 col-sm-8">
-                                                                <select class="form-control">
+                                                        <h5>Current Appointment</h5>
+                                                        <div class="well well-sm">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right">Classification</label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <select class="form-control">
                                                                     <option value="">Select Classification</option>
                                                                 </select>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="currentRankId">Rank</label>
-                                                            <div class="col-md-8 col-sm-8">
-                                                                <select class="form-control">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="currentRankId">Rank</label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <select class="form-control">
                                                                     <option value="">Select Current Appointment Rank</option>
                                                                     <option ></option>
                                                                 </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="currentApptDate">Date</label>
-                                                            <div class="col-md-8 col-sm-8">
-                                                                <div class="input-group date" ng-controller="DatepickerController" style="padding-right: 0px; margin-right: -8px;">
-                                                                    <input id="currentApptDate" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="application.detail.currentDateDate" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
-                                                                    <span class="input-group-btn">
-                                                                        <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar app-color"></i></button>
-                                                                    </span>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="current-appt-type">Type</label>
-                                                            <div class="col-md-8 col-sm-8">
-                                                                <select class="form-control" id="currentTypeId" name="currentTypeId" ng-model="application.detail.currentTypeId">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="currentApptDate">Date</label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <div class="input-group date" style="padding-right: 0px; margin-right: -8px;">
+                                                                        <input id="currentApptDate" type="text" class="form-control" />
+                                                                        <span class="input-group-btn">
+                                                                        <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar app-color"></i></button>
+                                                                    </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="current-appt-type">Type</label>
+                                                                <div class="col-md-8 col-sm-8">
+                                                                    <select class="form-control" id="currentTypeId" name="currentTypeId" ng-model="application.detail.currentTypeId">
                                                                     <option value="">Select Current Appointment Type</option>
                                                                     <option  ></option>
                                                                 </select>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div><!--End col-md-6 -->
-                                            </div><!--End Row -->
-                                                    <!--End section header Current Appointment -->
-                                                        <h5>Tenure/Promotion</h5>
-                                                        <div class="well well-sm col-md-12">
-                                                            <div class="col-md-6 row">
-                                                            <div class="form-group row" style="background-color: transparent;">
-                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="consideration">Consideration</label>
-                                                                <div class="col-md-8 col-sm-8">
-                                                                    <select class="form-control" id="consideration" name="consideration" ng-model="application.detail.consideration">
+                                                    <!--End col-md-6 -->
+                                                </div>
+                                                <!--End Row -->
+                                                <!--End section header Current Appointment -->
+                                                <h5>Tenure/Promotion</h5>
+                                                <div class="well well-sm col-md-12">
+                                                    <div class="col-md-6 row">
+                                                        <div class="form-group row" style="background-color: transparent;">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="consideration">Consideration</label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <select class="form-control" id="consideration" name="consideration" ng-model="application.detail.consideration">
                                                                         <option value="0">Appropriate</option>
                                                                         <option value="before">Prior to Designated Year</option>
                                                                         <option value="after">After Designated Year</option>
                                                                     </select>
-                                                                </div>
                                                             </div>
-                                                            <div class="form-group row" ng-show="showMemoField(application)">
-                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="considerationFile">Memo</label>
-                                                                <div class="col-md-8 col-sm-8">
-                                                                    <div class="input-group"  style="padding-right: 0px; margin-right: -8px;">
-                                                                        <div class="input form-control">
-                                                                            <a class="ellipsis"
-                                                                               id="considerationFile"
-                                                                               ng-model="considerationFile.name"
-                                                                               th:text="@{{{considerationFile.name}}}"
-                                                                               th:href="@{{{application.id}}/consideration/{{considerationFile.name}}/}"
-                                                                               th:target="@{_app_{{application.id}}}" target="_appfiledwn"></a>
-                                                                        </div>
-                                                                        <span class="input-group-btn">
+                                                        </div>
+                                                        <div class="form-group row" ng-show="showMemoField(application)">
+                                                            <label class="col-md-3 col-sm-3 col-form-label text-right" for="considerationFile">Memo</label>
+                                                            <div class="col-md-8 col-sm-8">
+                                                                <div class="input-group" style="padding-right: 0px; margin-right: -8px;">
+                                                                    <div class="input form-control">
+                                                                        <a class="ellipsis" id="considerationFile" ng-model="considerationFile.name" th:text="@{{{considerationFile.name}}}" th:href="@{{{application.id}}/consideration/{{considerationFile.name}}/}" th:target="@{_app_{{application.id}}}" target="_appfiledwn"></a>
+                                                                    </div>
+                                                                    <span class="input-group-btn">
                                                                             <button type="button" class="btn btn-default pull-right" ng-click="uploadConsiderationFile(application)"><i class="glyphicon glyphicon-file app-color"></i></button>
                                                                         </span>
-                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 row">
-                                                            <div class="form-group row">
-                                                                <label class="col-md-6 col-sm-3 col-form-label text-right" for="#">Date of Tenure</label>
-                                                                <div class="col-md-6 col-sm-8">
-                                                                    <div class="input-group date" ng-controller="DatepickerController" style="padding-right: 0px; margin-right: -8px;">
-                                                                        <input id="#" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="#" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
-                                                                        <span class="input-group-btn">
-                                                                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar app-color"></i></button>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-md-6 col-sm-3 col-form-label text-right" for="#">Date of Last Promotion</label>
-                                                                <div class="col-md-6 col-sm-8">
-                                                                    <div class="input-group date" ng-controller="DatepickerController" style="padding-right: 0px; margin-right: -8px;">
-                                                                        <input id="#" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="#" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
-                                                                        <span class="input-group-btn">
-                                                                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar app-color"></i></button>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        </div>
-
-                                                        <h5>Waver of Minimum Qualifications</h5>
-                                                        <div class="well well-sm col-md-12">
-                                                            <div class="form-group row" >
-                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="#">Educational Requirement</label>
-                                                                <div class="col-md-3 col-sm-3">
-                                                                    <div class="input-group"  style="padding-right: 0px; margin-right: -8px;">
-                                                                        <div class="input form-control">
-                                                                            <a></a>
-                                                                        </div>
-                                                                        <span class="input-group-btn">
-                                                                            <button type="button" class="btn btn-default pull-right" ng-click="#"><i class="glyphicon glyphicon-file app-color"></i></button>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-
-                                                                <label class="col-md-3 col-sm-3 col-form-label text-right" for="#">Service Requirement</label>
-                                                                <div class="col-md-3 col-sm-3">
-                                                                    <div class="input-group"  style="padding-right: 0px; margin-right: -8px;">
-                                                                        <div class="input form-control">
-                                                                            <a></a>
-                                                                        </div>
-                                                                        <span class="input-group-btn">
-                                                                            <button type="button" class="btn btn-default pull-right" ng-click="#"><i class="glyphicon glyphicon-file app-color"></i></button>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    <div class="form-group row" style="height: 60px;">
-                                                        <div class="col-xs-12 col-sm-2 text-left" >
-                                                            <button type="submit" id="save-button" class="btn btn-primary pull-left" ng-disabled="!detailForm.$dirty" th:disabled="true" ng-click="save(application)">Save Eligibility</button>
-                                                        </div>
-                                                        <div class="clearfix visible-xs"><br/>&nbsp;<br/></div>
-                                                        <div class="col-xs-12 col-sm-offset-1 col-sm-9 text-left" ng-cloak="true" ng-show="submissionSuccess &amp;&amp; !detailForm.$dirty">
-                                                            <div class="alert alert-success" role="alert" style=" padding-top: 7px; padding-bottom: 7px;">
-                                                                Your updates were saved!
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </fieldset>
-                                                </form>
+                                                    <div class="col-md-6 row">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-6 col-sm-3 col-form-label text-right" for="#">Date of Tenure</label>
+                                                            <div class="col-md-6 col-sm-8">
+                                                                <div class="input-group date" ng-controller="DatepickerController" style="padding-right: 0px; margin-right: -8px;">
+                                                                    <input id="#" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="#" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                                                    <span class="input-group-btn">
+                                                                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar app-color"></i></button>
+                                                                        </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-md-6 col-sm-3 col-form-label text-right" for="#">Date of Last Promotion</label>
+                                                            <div class="col-md-6 col-sm-8">
+                                                                <div class="input-group date" ng-controller="DatepickerController" style="padding-right: 0px; margin-right: -8px;">
+                                                                    <input id="#" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="#" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                                                    <span class="input-group-btn">
+                                                                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar app-color"></i></button>
+                                                                        </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                            </div>
+                                                <h5>Waver of Minimum Qualifications</h5>
+                                                <div class="well well-sm col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 col-sm-3 col-form-label text-right" for="#">Educational Requirement</label>
+                                                        <div class="col-md-3 col-sm-3">
+                                                            <div class="input-group" style="padding-right: 0px; margin-right: -8px;">
+                                                                <div class="input form-control">
+                                                                    <a></a>
+                                                                </div>
+                                                                <span class="input-group-btn">
+                                                                            <button type="button" class="btn btn-default pull-right" ng-click="#"><i class="glyphicon glyphicon-file app-color"></i></button>
+                                                                        </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <label class="col-md-3 col-sm-3 col-form-label text-right" for="#">Service Requirement</label>
+                                                        <div class="col-md-3 col-sm-3">
+                                                            <div class="input-group" style="padding-right: 0px; margin-right: -8px;">
+                                                                <div class="input form-control">
+                                                                    <a></a>
+                                                                </div>
+                                                                <span class="input-group-btn">
+                                                                            <button type="button" class="btn btn-default pull-right" ng-click="#"><i class="glyphicon glyphicon-file app-color"></i></button>
+                                                                        </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row" style="height: 60px;">
+                                                    <div class="col-xs-12 col-sm-2 text-left">
+                                                        <button type="submit" id="save-button" class="btn btn-primary pull-left" th:disabled="true">Save Eligibility</button>
+                                                    </div>
+                                                    <div class="clearfix visible-xs"><br/>&nbsp;<br/></div>
+                                                    <div class="col-xs-12 col-sm-offset-1 col-sm-9 text-left">
+                                                        <div class="alert alert-success" role="alert" style=" padding-top: 7px; padding-bottom: 7px;">
+                                                            Your updates were saved!
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
-                    <!-- End Bootstrap tab-panel fade Details Form -->
-
-                    <!-- Bootstrap tab-panel fade Dossier/Attachments -->
-
                 </div>
-            </div>
+                <!-- End Bootstrap tab-panel fade Details Form -->
 
+                <!-- Bootstrap tab-panel fade Dossier/Attachments -->
+
+            </div>
         </div>
+
+
+
+    <footer class="footer">
+        <div class="container">
+            <span class='uh-branding-one'>University</span>
+            <span class='uh-branding-two'>of&nbsp;</span>
+            <span class='uh-branding-one'>Hawai&#8216;i</span>
+        </div>
+    </footer>
     <!-- /.container -->
 
     <!-- jQuery -->
-<script src="js/jquery.js"></script>
+    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-    /*disable non active tabs*/
-    $('.nav li').not('.active').addClass('disabled');
-    $('.nav li').not('.active').find('a').removeAttr("data-toggle");
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /*disable non active tabs*/
+            $('.nav li').not('.active').addClass('disabled');
+            $('.nav li').not('.active').find('a').removeAttr("data-toggle");
 
-    $('button').click(function(){
-        /*enable next tab*/
-        $('.nav li.active').next('li').removeClass('disabled');
-        $('.nav li.active').next('li').find('a').attr("data-toggle","tab")
-    });
-});
-</script>
-<script type="text/javascript">
-var navbar = $("#statusbar");
-var pushDown = $("#main");
+            $('button').click(function() {
+                /*enable next tab*/
+                $('.nav li.active').next('li').removeClass('disabled');
+                $('.nav li.active').next('li').find('a').attr("data-toggle", "tab")
+            });
+        });
+    </script>
+    <!-- navbar scripting -->
+    <script type="text/javascript">
+        var navbar = $("#statusbar");
+        var pushDown = $("#main");
 
-$(window).scroll(function() {
-    if ($(this).scrollTop() > 90) {
-        $(navbar).addClass('fade-in')
-        $(pushDown).addClass("margin");
-    } else {
-        $(navbar).removeClass('fade-in')
-        $(pushDown).removeClass("margin");
-    }
-    if ($(window).width() <= 960) {
-        $(navbar).removeClass('fade-in')
-        $(pushDown).removeClass("margin");
-    }
-});
-</script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $(navbar).addClass('sticky , drop-shadow');
+                $(pushDown).addClass("margin");
+            } else {
+                $(navbar).removeClass('sticky , drop-shadow');
+                $(pushDown).removeClass("margin");
+            }
+            if ($(window).width() <= 960) {
+                $(navbar).removeClass('sticky');
+                $(navbar).removeClass('fade-in');
+                $(pushDown).removeClass("margin");
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var scrollTop = 0;
+            $(window).scroll(function() {
+                scrollTop = $(window).scrollTop();
+                if (scrollTop >= 5) {
+                    $('#global-nav').addClass('scrolled-nav');
+                    $('#menu-move').addClass('remove-padding');
+                    $('#move-brand').addClass('brand-padding');
+                    $('#remove-brand').css('display', 'none');
+                } else if (scrollTop < 5) {
+                    $('#menu-move').removeClass('remove-padding');
+                    $('#global-nav').removeClass('scrolled-nav');
+                    $('#move-brand').removeClass('brand-padding');
+                    $('#remove-brand').css('display', 'block');
+                }
+                if ($(window).width() <= 960) {
+                    $('#global-nav').removeClass('scrolled-nav')
+                    $('#menu-move').removeClass('remove-padding');
+                    $('#remove-brand').removeClass('opacity-zero').css('display', 'block');
+                    $('#move-brand').removeClass('brand-padding');
+                }
+
+            });
+
+        });
+    </script>
 
 
 

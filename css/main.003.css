@@ -7,7 +7,7 @@ html {
     overflow-y:scroll;
 }
 body {
-    padding-top: 110px;
+    padding-top: 150px;
     background-color: white;
 }
 .container {
@@ -46,26 +46,26 @@ td.uh-pre {
     font-size: 1.6em;
     font-style: normal;
     letter-spacing: 2.2px;
-    color: #777;
+    color: #000;
 }
 .uh-branding-two {
     font-family: cormorant-upright-regular, cursive;
     font-size: 0.8em;
     font-style: normal;
-    color: #777;
+    color: #000;
 }
 .navbar {
     background-color: white;
-    -webkit-box-shadow: 0px 4px 10px -1px rgba(0,0,0,0.30);
+    /* -webkit-box-shadow: 0px 4px 10px -1px rgba(0,0,0,0.30);
     -moz-box-shadow: 0px 4px 10px -1px rgba(0,0,0,0.30);
-    box-shadow: 0px 4px 10px -1px rgba(0,0,0,0.30);
+    box-shadow: 0px 4px 10px -1px rgba(0,0,0,0.30); */
 }
 .navbar-fixed-top .nav {
     padding-top: 40px;
     padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 20px;
-    background-color: white;
+    background-color: transparent;
 }
 .navbar-fixed-top .navbar-brand {
     padding-left: 20px;
@@ -85,15 +85,15 @@ td.uh-pre {
     width: auto;
     padding-left: 15px;
     padding-top: 20px;
-    color: #BD9319;
+    color: #000;
     background-color: transparent;
-
     font-family: alegreyasans-regular, opensans-regular, serif;
     font-weight: normal;
     font-size: 20px;
 }
 .navbar-brand.uh-nav-app-name:hover {
     color: #b08a17;
+    /* color: #999; */
 }
 .dropshadow {
     text-shadow: 1px 1px 3px rgba(150, 150, 150, 1);
@@ -102,7 +102,7 @@ td.uh-pre {
 .navbar-default .navbar-nav > .open > a:focus,
 .navbar-default .navbar-nav > .open > a:hover {
     color: #555;
-    background-color: white;
+    background-color: transparent;
 }
 .amp {
     font-family: alice-regular, alegreyasans-regular, opensans-regular, serif;
